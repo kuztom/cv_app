@@ -3,12 +3,19 @@
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/print/{id}', [HomeController::class, 'print'])->name('print');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/search/all', [SearchController::class, 'showAll'])->name('search.all');
+Route::get('/search/unique', [SearchController::class, 'showUnique'])->name('search.unique');
+Route::get('/search/oneSpecific', [SearchController::class, 'showOneSpecific'])->name('search.oneSpecific');
+Route::get('/search/countSpecific', [SearchController::class, 'showCountSpecific'])->name('search.countSpecific');
 
 Route::get('/create', [ProfilesController::class, 'create'])->name('profile.create');
 Route::post('/create/store', [ProfilesController::class, 'store'])->name('profile.store');

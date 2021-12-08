@@ -16,6 +16,12 @@
                     New CV
                 </button>
                     </a>
+                <a href="{{ route('search') }}">
+                <button type="button" name="new"
+                        class="w-30 bg-blue-200 hover:bg-blue-600 text-sm text-grey-800 hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    SQL Data Search
+                </button>
+                    </a>
             </span>
 
             @include('partials/success')
