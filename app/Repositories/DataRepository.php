@@ -8,5 +8,5 @@ interface DataRepository
     public function unique();
     public function oneSpecific();
     public function countSpecific(string $name);
-    public function joinUserSkills();
+    public function joinUsersSkills();
 }

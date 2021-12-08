@@ -70,7 +70,7 @@ class MysqlDataRepository implements DataRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function joinUserSkills()
+    public function joinUsersSkills()
     {
         $sql = "SELECT users.name, users.surname, skills.title, skills.additional_information
                 FROM users

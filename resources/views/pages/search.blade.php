@@ -38,16 +38,32 @@
                 </button>
             </form>
 
+            <form method="get" action="{{ route('search.countSpecific') }}">
+                <button type="submit"
+                        class="w-full bg-blue-200 hover:bg-blue-500 text-sm text-gray-800 hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    Count LLU Records
+                </button>
+            </form>
+
+            <form method="get" action="{{ route('search.join') }}">
+                <button type="submit"
+                        class="w-full bg-blue-200 hover:bg-blue-500 text-sm text-gray-800 hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    User Education and Skills
+                </button>
+            </form>
+
             @include('partials/success')
             <div class="container flex justify-center mx-auto">
                 <div class="flex flex-col">
-                    <div class="w-full">
-                        <div class="border-b border-gray-200 shadow">
+                    <div class="w-full p-4">
+                        <div class="border-b border-gray-200 shadow ">
 
                                 @include('partials/sql/all')
                                 @include('partials/sql/unique')
                                 @include('partials/sql/one_specific')
                                 @include('partials/sql/count_specific')
+                                @include('partials/sql/join')
+                                @include('partials/sql/users_skills')
 
                         </div>
                     </div>

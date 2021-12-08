@@ -29,11 +29,6 @@ class SearchController extends Controller
     {
         $data = $this->dataRepository->all();
 
-//       $data = $this->dataRepository->oneSpecific();
-//       $data = $this->dataRepository->countSpecific();
-//       $data = $this->dataRepository->join();
-//       $data = $this->dataRepository->joinUserSkills();
-
         return view('pages.search', [
             'all' => $data
         ]);
@@ -62,12 +57,27 @@ class SearchController extends Controller
         $name = 'LLU';
         $data = $this->dataRepository->countSpecific($name);
 
-//        echo "<pre>";
-//        var_dump($data);die;
-
         return view('pages.search', [
             'school' => $name,
             'countSpecific' => $data
+        ]);
+    }
+
+    public function showJoin()
+    {
+        $data = $this->dataRepository->join();
+
+        return view('pages.search', [
+            'join' => $data
+        ]);
+    }
+
+    public function showUsersSkills()
+    {
+        $data = $this->dataRepository->joinUsersSkills();
+
+        return view('pages.search', [
+            'usersSkills' => $data
         ]);
     }
 }

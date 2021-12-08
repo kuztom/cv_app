@@ -16,6 +16,8 @@ Route::get('/search/all', [SearchController::class, 'showAll'])->name('search.al
 Route::get('/search/unique', [SearchController::class, 'showUnique'])->name('search.unique');
 Route::get('/search/oneSpecific', [SearchController::class, 'showOneSpecific'])->name('search.oneSpecific');
 Route::get('/search/countSpecific', [SearchController::class, 'showCountSpecific'])->name('search.countSpecific');
+Route::get('/search/join', [SearchController::class, 'showJoin'])->name('search.join');
+Route::get('/search/usersSkills', [SearchController::class, 'showUsersSkills'])->name('search.usersSkills');
 
 Route::get('/create', [ProfilesController::class, 'create'])->name('profile.create');
 Route::post('/create/store', [ProfilesController::class, 'store'])->name('profile.store');
