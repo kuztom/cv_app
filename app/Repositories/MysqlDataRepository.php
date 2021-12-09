@@ -40,6 +40,7 @@ class MysqlDataRepository implements DataRepository
 //                $school['school'],
 //            ));
 //        }
+//        return $collection;
     }
 
     public function unique()
@@ -49,9 +50,9 @@ class MysqlDataRepository implements DataRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function oneSpecific()
+    public function oneSpecific(string $name)
     {
-        $sql = "SELECT * FROM education WHERE school = 'RTU'";
+        $sql = "SELECT * FROM education WHERE school = '$name'";
         $statement = $this->connection->query($sql);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -74,12 +75,79 @@ class MysqlDataRepository implements DataRepository
     {
         $sql = "SELECT users.name, users.surname, skills.title, skills.additional_information
                 FROM users
-                INNER JOIN skills
+                JOIN skills
                 ON users.id = skills.user_id
                 ORDER BY users.name";
         $statement = $this->connection->query($sql);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // query tests
+
+    public function groupSkills()
+    {
+        $sql = "SELECT user_id, COUNT(id)
+                AS user_skills
+                FROM skills
+                GROUP BY user_id";
+
+        $statement = $this->connection->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function joinUserToSchool()
+    {
+        $sql = "SELECT *
+                FROM users
+                JOIN education
+                ON users.id = education.user_id";
+
+        $statement = $this->connection->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function countUserDegrees()
+    {
+        $sql = "SELECT users.id, users.name, users.surname, COUNT(education.degree) degrees
+                FROM users
+                LEFT JOIN education
+                ON education.user_id = users.id
+                GROUP BY users.id";
+
+        $statement = $this->connection->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function userZipCode()
+    {
+        $sql = "SELECT users.id, users.name, users.surname
+                FROM users
+                WHERE users.zip_code = 'LV-4112'";
+
+        $statement = $this->connection->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function userLanguage()
+    {
+        $sql = "SELECT users.name, users.surname, skills.additional_information language
+                FROM users
+                JOIN skills
+                ON users.id = skills.user_id
+                WHERE skills.additional_information = 'English'";
+
+        $statement = $this->connection->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function userPhone()
+    {
+        $sql = "SELECT users.id, users.name, users.phone
+                FROM users
+                WHERE users.phone LIKE '282%'";
+
+        $statement = $this->connection->query($sql);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 }

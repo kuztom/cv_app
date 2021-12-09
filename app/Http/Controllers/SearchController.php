@@ -18,11 +18,7 @@ class SearchController extends Controller
 
     public function index()
     {
-        $schools = $this->dataRepository->all();
-
-        return view('pages.search', [
-            'data'=>$schools
-        ]);
+        return view('pages.search');
     }
 
     public function showAll()
@@ -45,7 +41,8 @@ class SearchController extends Controller
 
     public function showOneSpecific()
     {
-        $data = $this->dataRepository->oneSpecific();
+        $name = 'RTU';
+        $data = $this->dataRepository->oneSpecific($name);
 
         return view('pages.search', [
             'oneSpecific' => $data
@@ -79,5 +76,20 @@ class SearchController extends Controller
         return view('pages.search', [
             'usersSkills' => $data
         ]);
+    }
+
+    public function querySamples()
+    {
+        //  usable queries to test data fetching
+
+//        $data = $this->dataRepository->groupSkills();
+//        $data = $this->dataRepository->joinUserToSchool();
+//        $data = $this->dataRepository->countUserDegrees();
+//        $data = $this->dataRepository->userZipCode();
+//        $data = $this->dataRepository->userLanguage();
+        $data = $this->dataRepository->userPhone();
+
+        echo "<pre>";
+        var_dump($data);die;
     }
 }

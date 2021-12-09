@@ -52,6 +52,20 @@
                 </button>
             </form>
 
+            <form method="get" action="{{ route('search.usersSkills') }}">
+                <button type="submit"
+                        class="w-full bg-blue-200 hover:bg-blue-500 text-sm text-gray-800 hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    Users Skills
+                </button>
+            </form>
+
+            <form method="get" action="{{ route('search.samples') }}">
+                <button type="submit"
+                        class="w-full bg-blue-200 hover:bg-blue-500 text-sm text-gray-800 hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    Sample
+                </button>
+            </form>
+
             @include('partials/success')
             <div class="container flex justify-center mx-auto">
                 <div class="flex flex-col">
